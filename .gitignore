@@ -1,0 +1,15 @@
+
+---
+# Ignore environment variables
+.env
+
+# Ignore Go build files
+backend/bin/
+backend/pkg/
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore IDE-specific files
+.idea/
+.vscode/

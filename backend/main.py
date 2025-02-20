@@ -109,7 +109,7 @@ async def submit_request(request: RequestPayload):
             )
             print(f"Webhook response: {response.status_code}")  # Debug logging
             print(f"Webhook response body: {response.text}")  # Debug logging
-            if response.status_code != 200:
+            if response.status_code != 202:
                 raise HTTPException(
                     status_code=500,
                     detail=f"Webhook error: {response.status_code} - {response.text}"

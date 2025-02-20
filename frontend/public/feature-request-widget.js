@@ -188,10 +188,11 @@ class FeatureRequestWidget {
                 form.reset();
                 this.closeModal();
             } else {
-                throw new Error('Failed to submit request');
+                const errorData = await response.json();
+                throw new Error(`Failed to submit request: ${errorData.detail || response.statusText}`);
             }
         } catch (error) {
-            alert('Failed to submit feature request. Please try again later.');
+            alert(`Failed to submit feature request: ${error.message}`);
             console.error('Error:', error);
         }
     }

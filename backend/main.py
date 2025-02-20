@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import json
 from fastapi.middleware.cors import CORSMiddleware
+from httpx import AsyncClien
 
 app = FastAPI()
 
@@ -90,6 +91,25 @@ async def submit_request(request: RequestPayload):
 **Description:**
 {request.description}
 """
+    try:
+        async with AsyncClient() as client:
+            response = await client.post(
+                request.webhook_url,
+                json={
+                    "message": message,
+                    "username": "Feature Request Bot"
+                }
+            )
+            if response.status_code != 200:
+                raise HTTPException(
+                    status_code=500, 
+                    detail=f"Failed to send to Telex: {response.status_code}"
+                )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, 
+            detail=f"Error sending to Telex: {str(e)}"
+        )
     
     return {
         "message": message,

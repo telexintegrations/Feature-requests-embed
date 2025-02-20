@@ -50,7 +50,7 @@ def get_integration_json(request: Request):
             },
             "integration_type": "output",
             "integration_category": "Communication & Collaboration",
-            "is_active": true,
+            "is_active": True,
             "key_features": [
                 "Allows users to submit feature requests via an embeddable form.",
                 "Sends feature requests to a Telex channel for tracking and analysis."

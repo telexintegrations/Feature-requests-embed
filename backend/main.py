@@ -4,6 +4,8 @@ from typing import List, Optional
 import json
 from fastapi.middleware.cors import CORSMiddleware
 from httpx import AsyncClient
+import traceback
+
 
 app = FastAPI()
 
@@ -80,7 +82,8 @@ def get_integration_json(request: Request):
 @app.post("/submit-request")
 async def submit_request(request: RequestPayload):
     print(f"Received request: {request.dict()}")
-    
+    print(f"Type of str: {type(str)}")
+
     # Format the message for Telex
     message = f"""
 📢 New Feature Request
@@ -112,6 +115,7 @@ async def submit_request(request: RequestPayload):
                 
     except Exception as e:
         print(f"Error in submit_request: {str(e)}")  # Debug logging
+        print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
     
     return {

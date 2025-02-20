@@ -174,6 +174,8 @@ class FeatureRequestWidget {
             webhook_url: this.config.webhookUrl
         };
 
+        console.log('Submitting data:', data); // For debugging
+
         try {
             const response = await fetch(this.config.telexEndpoint, {
                 method: 'POST',

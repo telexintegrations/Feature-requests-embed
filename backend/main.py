@@ -26,6 +26,7 @@ class RequestPayload(BaseModel):
     requester_email: str
     priority: str
     category: Optional[str] = None
+    webhook_url: str
 
 class TelexPayload(BaseModel):
     channel_id: str

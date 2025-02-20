@@ -3,6 +3,7 @@ class FeatureRequestWidget {
     constructor(config) {
         this.config = {
             telexEndpoint: config.telexEndpoint,
+            webhookUrl: config.webhookUrl,
             categories: config.categories?.split(',') || [
                 'UI/UX',
                 'Performance',
@@ -169,7 +170,8 @@ class FeatureRequestWidget {
             description: form.description.value,
             requester_email: form.email.value,
             priority: form.priority.value,
-            category: form.category.value
+            category: form.category.value,
+            webhook_url: this.config.webhookUrl
         };
 
         try {

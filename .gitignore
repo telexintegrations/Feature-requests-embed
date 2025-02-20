@@ -1,15 +1,21 @@
 
 ---
-# Ignore environment variables
-.env
-
-# Ignore Go build files
-backend/bin/
-backend/pkg/
-
-# Ignore Node.js dependencies
-node_modules/
-
 # Ignore IDE-specific files
 .idea/
 .vscode/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+.next/
+.vercel/
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db

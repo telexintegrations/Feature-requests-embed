@@ -94,7 +94,7 @@ async def submit_request(request: RequestPayload):
     try:
         async with AsyncClient() as client:
             response = await client.post(
-                request.webhook_url,
+                str(request.webhook_url),
                 json={
                     "message": message,
                     "username": "Feature Request Bot"

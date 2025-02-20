@@ -112,7 +112,7 @@ async def submit_request(request: RequestPayload):
             if response.status_code != 200:
                 raise HTTPException(
                     status_code=500,
-                    detail=f"Webhook error: {response.status_code} - {await response.text}"
+                    detail=f"Webhook error: {response.status_code} - {response.text}"
                 )
                 
     except Exception as e:

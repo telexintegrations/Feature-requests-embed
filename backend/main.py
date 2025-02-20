@@ -100,16 +100,17 @@ async def submit_request(request: RequestPayload):
                     "username": "Feature Request Bot"
                 }
             )
-            if response.status_code != 200:
+            print(f"Webhook response: {webhook_response.status_code}")  # Debug logging
+            print(f"Webhook response body: {await webhook_response.text()}")  # Debug logging
+            if webhook_response.status_code != 200:
                 raise HTTPException(
-                    status_code=500, 
-                    detail=f"Failed to send to Telex: {response.status_code}"
+                    status_code=500,
+                    detail=f"Webhook error: {webhook_response.status_code} - {await webhook_response.text()}"
                 )
+                
     except Exception as e:
-        raise HTTPException(
-            status_code=500, 
-            detail=f"Error sending to Telex: {str(e)}"
-        )
+        print(f"Error in submit_request: {str(e)}")  # Debug logging
+        raise HTTPException(status_code=500, detail=str(e))
     
     return {
         "message": message,

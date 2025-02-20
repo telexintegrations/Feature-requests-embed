@@ -79,6 +79,8 @@ def get_integration_json(request: Request):
 
 @app.post("/submit-request")
 async def submit_request(request: RequestPayload):
+    print(f"Received request: {request.dict()}")
+    
     # Format the message for Telex
     message = f"""
 📢 New Feature Request

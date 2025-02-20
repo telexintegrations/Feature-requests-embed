@@ -1,0 +1,12 @@
+{
+    "name": "feature-request-widget",
+    "version": "1.0.0",
+    "description": "Embeddable feature request widget",
+    "scripts": {
+      "start": "serve public",
+      "dev": "serve public"
+    },
+    "devDependencies": {
+      "serve": "^14.0.0"
+    }
+  }

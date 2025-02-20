@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 import json
 from fastapi.middleware.cors import CORSMiddleware
-from httpx import AsyncClien
+from httpx import AsyncClient
 
 app = FastAPI()
 

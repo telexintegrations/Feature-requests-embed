@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feature Request Widget Test</title>
+    <script src="feature-request-widget.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const featureWidget = new FeatureRequestWidget({
+                telexEndpoint: 'YOUR_API_ENDPOINT',
+                categories: 'UI/UX,Performance,Security,Integration,Other',
+                position: 'bottom-right'
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Test Page</h1>
+    <p>You should see the feature request button in the bottom right corner.</p>
+</body>
+</html>

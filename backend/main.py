@@ -37,6 +37,10 @@ def get_integration_json(request: Request):
     base_url = str(request.base_url).rstrip("/")
     return {
         "data": {
+            "date": {
+                "created_at": "2025-02-19",
+                "updated_at": "2025-02-19"
+            },
             "descriptions": {
                 "app_name": "Feature Request Collector",
                 "app_description": "Collects and processes feature requests from embedded forms",
@@ -46,6 +50,11 @@ def get_integration_json(request: Request):
             },
             "integration_type": "output",
             "integration_category": "Communication & Collaboration",
+            "is_active": true,
+            "key_features": [
+                "Allows users to submit feature requests via an embeddable form.",
+                "Sends feature requests to a Telex channel for tracking and analysis."
+            ],
             "settings": [
                 {
                     "label": "allowed_domains",

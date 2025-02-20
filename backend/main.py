@@ -102,7 +102,9 @@ async def submit_request(request: RequestPayload):
                 str(request.webhook_url),
                 json={
                     "message": message,
-                    "username": "Feature Request Bot"
+                    "username": "Feature Request Bot",
+                    "event_name": "feature_request",
+                    "status": "success" 
                 }
             )
             print(f"Webhook response: {response.status_code}")  # Debug logging
@@ -110,7 +112,7 @@ async def submit_request(request: RequestPayload):
             if response.status_code != 200:
                 raise HTTPException(
                     status_code=500,
-                    detail=f"Webhook error: {response.status_code} - {await response.text()}"
+                    detail=f"Webhook error: {response.status_code} - {await response.text}"
                 )
                 
     except Exception as e:

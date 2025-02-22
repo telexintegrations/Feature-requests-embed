@@ -319,11 +319,11 @@ class FeatureRequestWidget {
 
             return `
             <button class="fr-widget-close">&times;</button>
-            <p>
-                Please, fill out the form below to request a feature.
-                <span>Thank you for helping us improve!</span>
-            </p>
             <form class="fr-widget-form">
+                <p>
+                    Please, fill out the form below to request a feature.
+                    <span>Thank you for helping us improve!</span>
+                </p>
                 <input type="text" name="title" placeholder="Feature title" required>
                 <textarea name="description" placeholder="Describe the feature you'd like to see..." rows="4" required></textarea>
                 <input type="email" name="email" placeholder="Your email" required>

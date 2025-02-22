@@ -89,11 +89,15 @@ class FeatureRequestWidget {
                 width: 320px;
                 height: fit-content;
                 background: #d3d3d3;
-                position: relative;
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s;
+                z-index: 100001; 
             }
             .text-content {
                 width: 100%;

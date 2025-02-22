@@ -93,15 +93,15 @@ async def submit_request(request: RequestPayload):
 
     # Format the message for Telex
     message = f"""
-📢 New Feature Request
-
-**Title:** {request.title}
-**Priority:** {request.priority}
-**Category:** {request.category or 'Not specified'}
-**Requester:** {request.requester_email}
-
-**Description:**
-{request.description}
+<div style="font-family: Arial, sans-serif; color: #333;">
+        <h2 style="color: #007bff;">📢 New Feature Request</h2>
+        <p><strong>Title:</strong> {request.title}</p>
+        <p><strong>Priority:</strong> {request.priority}</p>
+        <p><strong>Category:</strong> {request.category or 'Not specified'}</p>
+        <p><strong>Requester:</strong> {request.requester_email}</p>
+        <h3>Description:</h3>
+        <p>{request.description}</p>
+    </div>
 """
     try:
         async with AsyncClient() as client:

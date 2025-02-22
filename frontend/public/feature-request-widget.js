@@ -85,6 +85,65 @@ class FeatureRequestWidget {
                 font-size: 20px;
                 cursor: pointer;
             }
+            .card {
+                width: 320px;
+                height: fit-content;
+                background: #d3d3d3;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+            }
+            .text-content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 15px 18px;
+                gap: 3px;
+            }
+            .card-heading {
+                font-size: 1em;
+                font-weight: 800;
+            }
+            .card-content {
+                font-size: 0.95em;
+                font-weight: 500;
+                color: rgb(49, 49, 49);
+            }
+            .exit-btn {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                border: none;
+                right: 8px;
+                top: 8px;
+                cursor: pointer;
+            }
+            .exit-btn svg {
+                width: 12px;
+            }
+            .exit-btn:hover {
+                background-color: #eadaba;
+            }
+            .card::before {
+                content: "";
+                background-color: #323232;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: -1;
+                padding: 4px;
+                transition: all 0.3s;
+            }
+                .card:hover::before {
+                margin: 25px 0 0 25px;
+            }
+    }
         `;
         const styleSheet = document.createElement('style');
         styleSheet.textContent = styles;
@@ -113,6 +172,32 @@ class FeatureRequestWidget {
         this.modal.querySelector('.fr-widget-close').addEventListener('click', () => this.closeModal());
         this.overlay.addEventListener('click', () => this.closeModal());
         this.modal.querySelector('form').addEventListener('submit', (e) => this.handleSubmit(e));
+    }
+
+    displayCard(message, isSuccess) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="text-content">
+                <p class="card-heading">${isSuccess ? 'Success' : 'Error'}</p>
+                <p class="card-content">${message}</p>
+                <button class="exit-btn">
+                    <svg fill="none" viewBox="0 0 15 15" height="15" width="15">
+                        <path stroke-linecap="round" stroke-width="2" stroke="black" d="M1 14L14 1"></path>
+                        <path stroke-linecap="round" stroke-width="2" stroke="black" d="M1 1L14 14"></path>
+                    </svg>
+                </button>
+            </div>
+        `;
+        document.body.appendChild(card);
+    
+        card.querySelector('.exit-btn').addEventListener('click', () => {
+            card.remove();
+        });
+    
+        setTimeout(() => {
+            card.remove();
+        }, 5000); // Automatically remove the card after 5 seconds
     }
 
     getModalHTML() {
@@ -173,9 +258,9 @@ class FeatureRequestWidget {
             category: form.category.value,
             webhook_url: this.config.webhookUrl
         };
-
+    
         console.log('Submitting data:', data); // For debugging
-
+    
         try {
             const response = await fetch(this.config.telexEndpoint, {
                 method: 'POST',
@@ -184,18 +269,19 @@ class FeatureRequestWidget {
                 },
                 body: JSON.stringify(data)
             });
-
+    
             if (response.ok) {
-                alert('Feature request submitted successfully!');
                 form.reset();
-                this.closeModal();
-            } else {
-                const errorData = await response.json();
-                throw new Error(`Failed to submit request: ${errorData.detail || response.statusText}`);
-            }
-        } catch (error) {
-            alert(`Failed to submit feature request: ${error.message}`);
-            console.error('Error:', error);
+            this.closeModal();
+            this.displayCard('Your request has been submitted. Submit another request.', true);
+        } else {
+            const errorData = await response.json();
+            throw new Error(`Failed to submit request: ${errorData.detail || response.statusText}`);
         }
+    } catch (error) {
+        this.closeModal();
+        this.displayCard('Sorry, your request has not been submitted. Try again.', false);
+        console.error('Error:', error);
     }
+}
 }

@@ -85,67 +85,86 @@ class FeatureRequestWidget {
                 font-size: 20px;
                 cursor: pointer;
             }
-            .card {
+            .notifications-container {
                 width: 320px;
-                height: fit-content;
-                background: #d3d3d3;
+                height: auto;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
                 position: fixed;
                 top: 20px;
                 left: 50%;
                 transform: translateX(-50%);
+                z-index: 100001; /* Ensure it appears above other elements */
+            }
+            .flex {
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.3s;
-                z-index: 100001; 
             }
-            .text-content {
-                width: 100%;
+            .flex-shrink-0 {
+                flex-shrink: 0;
+            }
+            .success {
+                padding: 1rem;
+                border-radius: 0.375rem;
+                background-color: rgb(240 253 244);
+            }
+            .succes-svg {
+                color: rgb(74 222 128);
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+            .success-prompt-wrap {
+                margin-left: 0.75rem;
+            }
+            .success-prompt-heading {
+                font-weight: bold;
+                color: rgb(22 101 52);
+            }
+            .success-prompt-prompt {
+                margin-top: 0.5rem;
+                color: rgb(21 128 61);
+            }
+            .success-button-container {
                 display: flex;
-                flex-direction: column;
-                padding: 15px 18px;
-                gap: 3px;
+                margin-top: 0.875rem;
+                margin-bottom: -0.375rem;
+                margin-left: -0.5rem;
+                margin-right: -0.5rem;
             }
-            .card-heading {
-                font-size: 1em;
-                font-weight: 800;
-            }
-            .card-content {
-                font-size: 0.95em;
-                font-weight: 500;
-                color: rgb(49, 49, 49);
-            }
-            .exit-btn {
-                position: absolute;
-                width: 30px;
-                height: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: transparent;
+            .success-button-main {
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                background-color: #ECFDF5;
+                color: rgb(22 101 52);
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                font-weight: bold;
+                border-radius: 0.375rem;
                 border: none;
-                right: 8px;
-                top: 8px;
-                cursor: pointer;
             }
-            .exit-btn svg {
-                width: 12px;
+            .success-button-main:hover {
+                background-color: #D1FAE5;
             }
-            .exit-btn:hover {
-                background-color: #eadaba;
+            .success-button-secondary {
+                padding-top: 0.375rem;
+                padding-bottom: 0.375rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                margin-left: 0.75rem;
+                background-color: #ECFDF5;
+                color: #065F46;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                border-radius: 0.375rem;
+                border: none;
             }
-            .card::before {
-                content: "";
-                background-color: #323232;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                z-index: -1;
-                padding: 4px;
-                transition: all 0.3s;
-            }
-                .card:hover::before {
-                margin: 25px 0 0 25px;
+            .success-button-secondary:hover {
+                background-color: #D1FAE5;
+                color: rgb(22 101 52);
             }
     }
         `;
@@ -180,22 +199,36 @@ class FeatureRequestWidget {
 
     displayCard(message, isSuccess) {
         const card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'notifications-container';
         card.innerHTML = `
-            <div class="text-content">
-                <p class="card-heading">${isSuccess ? 'Success' : 'Error'}</p>
-                <p class="card-content">${message}</p>
-                <button class="exit-btn">
-                    <svg fill="none" viewBox="0 0 15 15" height="15" width="15">
-                        <path stroke-linecap="round" stroke-width="2" stroke="black" d="M1 14L14 1"></path>
-                        <path stroke-linecap="round" stroke-width="2" stroke="black" d="M1 1L14 14"></path>
+            <div class="${isSuccess ? 'success' : 'error'}">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="succes-svg">
+                        <path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
                     </svg>
-                </button>
+                </div>
+                <div class="success-prompt-wrap">
+                    <p class="success-prompt-heading">${isSuccess ? 'Success' : 'Error'}</p>
+                    <div class="success-prompt-prompt">
+                        <p>${message}</p>
+                    </div>
+                    <div class="success-button-container">
+                        <button class="success-button-main" type="button">${isSuccess ? 'Submit another request' : 'Try again'}</button>
+                        <button class="success-button-secondary" type="button">Dismiss</button>
+                    </div>
+                </div>
+            </div>
             </div>
         `;
         document.body.appendChild(card);
     
-        card.querySelector('.exit-btn').addEventListener('click', () => {
+        card.querySelector('.success-button-main').addEventListener('click', () => {
+            this.openModal();
+            card.remove();
+        });
+    
+        card.querySelector('.success-button-secondary').addEventListener('click', () => {
             card.remove();
         });
     

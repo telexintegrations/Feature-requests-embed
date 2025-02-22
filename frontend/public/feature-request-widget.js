@@ -56,34 +56,113 @@ class FeatureRequestWidget {
                 z-index: 99999;
             }
             .fr-widget-form {
+                --background: #d3d3d3;
+                --input-focus: #2d8cf0;
+                --font-color: #323232;
+                --font-color-sub: #666;
+                --bg-color: #fff;
+                --main-color: #323232;
+                padding: 20px;
+                background: var(--background);
                 display: flex;
                 flex-direction: column;
-                gap: 16px;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 20px;
+                border-radius: 5px;
+                border: 2px solid var(--main-color);
+                box-shadow: 4px 4px var(--main-color);
             }
-            .fr-widget-form input,
-            .fr-widget-form textarea,
-            .fr-widget-form select {
-                padding: 8px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-                font-family: system-ui;
-            }
-            .fr-widget-form button {
-                padding: 12px;
-                background: #007bff;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            .fr-widget-close {
-                position: absolute;
-                top: 12px;
-                right: 12px;
-                background: none;
-                border: none;
+            .fr-widget-form > p {
+                font-family: var(--font-DelaGothicOne);
+                color: var(--font-color);
+                font-weight: 700;
                 font-size: 20px;
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+                .fr-widget-form > p > span {
+                font-family: var(--font-SpaceMono);
+                color: var(--font-color-sub);
+                font-weight: 600;
+                font-size: 17px;
+            }
+            .separator {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+            }
+            .separator > div {
+                width: 100px;
+                height: 3px;
+                border-radius: 5px;
+                background-color: var(--font-color-sub);
+            }
+            .separator > span {
+                color: var(--font-color);
+                font-family: var(--font-SpaceMono);
+                font-weight: 600;
+            }
+            .oauthButton {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                padding: auto 15px 15px auto;
+                width: 250px;
+                height: 40px;
+                border-radius: 5px;
+                border: 2px solid var(--main-color);
+                background-color: var(--bg-color);
+                box-shadow: 4px 4px var(--main-color);
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--font-color);
                 cursor: pointer;
+                transition: all 250ms;
+                position: relative;
+                overflow: hidden;
+                z-index: 1;
+            }
+            .oauthButton::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0;
+                background-color: #212121;
+                z-index: -1;
+                box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+                transition: all 250ms;
+            }
+            .oauthButton:hover {
+                color: #e8e8e8;
+            }
+                .oauthButton:hover::before {
+                width: 100%;
+            }
+            .fr-widget-form > input,
+            .fr-widget-form > textarea,
+            .fr-widget-form > select {
+                width: 250px;
+                height: 40px;
+                border-radius: 5px;
+                border: 2px solid var(--main-color);
+                background-color: var(--bg-color);
+                box-shadow: 4px 4px var(--main-color);
+                font-size: 15px;
+                font-weight: 600;
+                color: var(--font-color);
+                padding: 5px 10px;
+                outline: none;
+            }
+            .icon {
+                width: 1.5rem;
+                height: 1.5rem;
             }
             .notifications-container {
                 width: 320px;
@@ -231,10 +310,6 @@ class FeatureRequestWidget {
         card.querySelector('.success-button-secondary').addEventListener('click', () => {
             card.remove();
         });
-    
-        setTimeout(() => {
-            card.remove();
-        }, 5000); // Automatically remove the card after 5 seconds
     }
 
     getModalHTML() {
@@ -242,7 +317,7 @@ class FeatureRequestWidget {
             .map(cat => `<option value="${cat}">${cat}</option>`)
             .join('');
 
-        return `
+            return `
             <button class="fr-widget-close">&times;</button>
             <h2 style="margin-top: 0;">Request a Feature</h2>
             <form class="fr-widget-form">
@@ -257,7 +332,7 @@ class FeatureRequestWidget {
                 <select name="category" required>
                     ${categoryOptions}
                 </select>
-                <button type="submit">Submit Request</button>
+                <button type="submit" class="oauthButton">Submit Request</button>
             </form>
         `;
     }
@@ -310,14 +385,14 @@ class FeatureRequestWidget {
             if (response.ok) {
                 form.reset();
             this.closeModal();
-            this.displayCard('Your request has been submitted. Submit another request.', true);
+            this.displayCard('Your request has been submitted.', true);
         } else {
             const errorData = await response.json();
             throw new Error(`Failed to submit request: ${errorData.detail || response.statusText}`);
         }
     } catch (error) {
         this.closeModal();
-        this.displayCard('Sorry, your request has not been submitted. Try again.', false);
+        this.displayCard('Sorry, your request has not been submitted.', false);
         console.error('Error:', error);
     }
 }

@@ -318,7 +318,7 @@ class FeatureRequestWidget {
             .join('');
 
             return `
-
+            <button class="fr-widget-close">&times;</button>
             <form class="fr-widget-form">
                 <p>
                     Please, fill out the form below to request a feature.

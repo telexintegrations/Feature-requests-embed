@@ -5,6 +5,7 @@ import json
 from fastapi.middleware.cors import CORSMiddleware
 from httpx import AsyncClient
 import traceback
+from fastapi.responses import RedirectResponse
 
 
 app = FastAPI()
@@ -35,7 +36,10 @@ class TelexPayload(BaseModel):
     channel_id: str
     settings: List[Setting]
     message: str
-
+@app.get("/")
+def read_root():
+    return RedirectResponse(url="https://github.com/telexintegrations/Feature-requests-embed")
+    
 @app.get("/integration.json")
 def get_integration_json(request: Request):
     base_url = str(request.base_url).rstrip("/")
@@ -48,7 +52,7 @@ def get_integration_json(request: Request):
             "descriptions": {
                 "app_name": "Feature Request Collector",
                 "app_description": "Collects and processes feature requests from embedded forms",
-                "app_url": base_url,
+                "app_url": https://github.com/telexintegrations/Feature-requests-embed/blob/main/README.md,
                 "app_logo": "https://example.com/logo.png",
                 "background_color": "#ffffff"
             },
@@ -58,6 +62,9 @@ def get_integration_json(request: Request):
             "key_features": [
                 "Allows users to submit feature requests via an embeddable form.",
                 "Sends feature requests to a Telex channel for tracking and analysis."
+                "The form is embedded directly in the HTML of the website and does not require integration with Telex."
+                "To use the embeddable form, users must provide the URL of the Telex channel where the feature requests will be sent."
+                "please, refer to the github repository for more information."
             ],
             "settings": [
                 {

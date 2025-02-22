@@ -318,6 +318,7 @@ class FeatureRequestWidget {
             .join('');
 
             return `
+
             <form class="fr-widget-form">
                 <p>
                     Please, fill out the form below to request a feature.

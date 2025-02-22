@@ -39,7 +39,7 @@ class TelexPayload(BaseModel):
 @app.get("/")
 def read_root():
     return RedirectResponse(url="https://github.com/telexintegrations/Feature-requests-embed")
-    
+
 @app.get("/integration.json")
 def get_integration_json(request: Request):
     base_url = str(request.base_url).rstrip("/")
@@ -52,8 +52,8 @@ def get_integration_json(request: Request):
             "descriptions": {
                 "app_name": "Feature Request Collector",
                 "app_description": "Collects and processes feature requests from embedded forms",
-                "app_url": https://github.com/telexintegrations/Feature-requests-embed/blob/main/README.md,
-                "app_logo": "https://example.com/logo.png",
+                "app_url": https://github.com/telexintegrations/Feature-requests-embed/blob/main/README.md",
+                "app_logo": "https://raw.githubusercontent.com/telexintegrations/Feature-requests-embed/refs/heads/main/_3b004ae5-3f06-4660-b084-23545f5ed4ff.jfif",
                 "background_color": "#ffffff"
             },
             "integration_type": "output",

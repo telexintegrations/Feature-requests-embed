@@ -131,7 +131,7 @@ To embed the widget, paste the following **script** into your frontend code, rep
 ```html
 <script>
     const featureWidget = new FeatureRequestWidget({
-        telexEndpoint: "https://your-api-url.com/submit-request",
+        telexEndpoint: "https://feature-requests-embed.onrender.com/submit-request",
         webhookUrl: "https://ping.telex.im/v1/webhooks/your-webhook-id",
         categories: "UI/UX,Performance,Security,Integration,Other",
         position: "bottom-right"

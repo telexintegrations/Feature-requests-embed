@@ -16,13 +16,28 @@ This integration is **not** a typical Telex integration (it is neither an **Inte
 
 Mark (the Chief Mentor) approved this approach but required the creation of a frontend component. To test this integration, instead of adding it to a Telex channel manually, you can simply use the **test frontend** that I have already set up.
 
-### 🔹 How to Test
+### 🔹 How to Test via Web
 1. Go to **[Feature Request Embed Test](https://feature-requests-embed.vercel.app/test.html)**.
 2. Submit a feature request through the form.
 3. Your submission will appear in the **Telex-Integration-Test-2** channel.
    - [View the Channel](https://telex.im/dashboard/channels/019532cb-370e-77c7-9607-4036f19e5a6a)
 
-This setup ensures that feature requests are correctly logged in Telex without requiring a manual integration setup.
+### 🔹 How to Test via cURL
+You can also test the submission endpoint directly using **cURL**:
+```bash
+curl -X POST "https://feature-requests-embed.onrender.com/submit-request" \
+     -H "Content-Type: application/json" \
+     -d '{
+        "title": "Test Feature",
+        "description": "Testing feature request submission.",
+        "requester_email": "mentor@example.com",
+        "priority": "Medium",
+        "category": "UI/UX",
+        "webhook_url": "https://ping.telex.im/v1/webhooks/019532cb-370e-77c7-9607-4036f19e5a6a"
+     }'
+```
+
+After submitting, check the **Telex-Integration-Test-2** channel to confirm the request was logged correctly.
 
 ---
 

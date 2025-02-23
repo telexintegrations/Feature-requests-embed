@@ -16,7 +16,7 @@ This project provides a **Feature Request Embed Widget** that allows users to su
 ```
 /feature-request-embed
 │── README.md                     # Project documentation
-│── image.png                      # Project image
+│── assets/                     # Project images
 │── frontend/
 │   │── public/
 │   │   │── feature-request-widget.js   # The embeddable widget script
@@ -112,13 +112,13 @@ Expected Response:
 ![Widget Button]()
 
 ### 📝 Feature Request Form
-![Feature Form](https://via.placeholder.com/400x300?text=Feature+Request+Form)
+![Feature Form](https://raw.githubusercontent.com/telexintegrations/Feature-requests-embed/refs/heads/main/assets/form1.png)
 
 ### ✅ Successful Submission
-![Success Message](https://via.placeholder.com/400x200?text=Success+Message)
+![Success Message](https://raw.githubusercontent.com/telexintegrations/Feature-requests-embed/refs/heads/main/assets/successmessage.png)
 
 ### 🤖 bot message in telex channel
-![Bot Message](https://via.placeholder.com/400x200?text=Success+Message)
+![Bot Message](https://raw.githubusercontent.com/telexintegrations/Feature-requests-embed/refs/heads/main/assets/message%20in%20channel.png)
 
 
 ---

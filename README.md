@@ -19,7 +19,7 @@ Mark (the Chief Mentor) approved this approach but required the creation of a fr
 ### 🔹 How to Test via Web
 1. Go to **[Feature Request Embed Test](https://feature-requests-embed.vercel.app/test.html)**.
 2. Submit a feature request through the form.
-3. Your submission will appear in the **Telex-Integration-Test-2** channel.
+3. Your submission will appear in the **features-requests-embed** channel in the **Telex-Integration-Test-2** organization.
    - [View the Channel](https://telex.im/dashboard/channels/01953355-7a3d-7ccd-9d21-70e73927ce7b)
 
 ### 🔹 How to Test via cURL

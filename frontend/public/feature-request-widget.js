@@ -22,14 +22,31 @@ class FeatureRequestWidget {
         const styles = `
             .fr-widget-trigger {
                 position: fixed;
-                padding: 12px 24px;
-                background: #007bff;
-                color: white;
+                font-size: 17px;
+                font-weight: bold;
                 border: none;
-                border-radius: 8px;
                 cursor: pointer;
-                font-family: system-ui;
+                border-radius: 0.75em;
+                background: #000000;
                 z-index: 99999;
+            }
+            .fr-widget-trigger .button_top {
+                display: block;
+                box-sizing: border-box;
+                border: 2px solid #000000;
+                border-radius: 0.75em;
+                padding: 0.75em 1.5em;
+                background: #e8e8e8;
+                color: #000000;
+                transform: translateY(-0.2em);
+                transition: transform 0.1s ease;
+            }
+            .fr-widget-trigger:hover .button_top {
+                transform: translateY(-0.33em);
+            }
+            .fr-widget-trigger:active .button_top {
+                transform: translateY(0);
+            }
             }
             .fr-widget-modal {
                 display: none;
@@ -254,7 +271,7 @@ class FeatureRequestWidget {
         // Create trigger button
         this.trigger = document.createElement('button');
         this.trigger.className = 'fr-widget-trigger';
-        this.trigger.textContent = '💡 Request Feature';
+        this.trigger.innerHTML = '<span class="button_top">Request Feature</span>';
         this.setPosition(this.config.position);
         document.body.appendChild(this.trigger);
 

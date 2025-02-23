@@ -20,7 +20,7 @@ Mark (the Chief Mentor) approved this approach but required the creation of a fr
 1. Go to **[Feature Request Embed Test](https://feature-requests-embed.vercel.app/test.html)**.
 2. Submit a feature request through the form.
 3. Your submission will appear in the **Telex-Integration-Test-2** channel.
-   - [View the Channel](https://telex.im/dashboard/channels/019532cb-370e-77c7-9607-4036f19e5a6a)
+   - [View the Channel](https://telex.im/dashboard/channels/01953355-7a3d-7ccd-9d21-70e73927ce7b)
 
 ### 🔹 How to Test via cURL
 You can also test the submission endpoint directly using **cURL**:
@@ -33,7 +33,7 @@ curl -X POST "https://feature-requests-embed.onrender.com/submit-request" \
         "requester_email": "mentor@example.com",
         "priority": "Medium",
         "category": "UI/UX",
-        "webhook_url": "https://ping.telex.im/v1/webhooks/019532cb-370e-77c7-9607-4036f19e5a6a"
+        "webhook_url": "https://ping.telex.im/v1/webhooks/01953355-7a3d-7ccd-9d21-70e73927ce7b"
      }'
 ```
 

@@ -11,12 +11,26 @@ This project provides a **Feature Request Embed Widget** that allows users to su
 - **Customizable Styles**: Modify the form and button styles as needed.
 
 ---
+## 🔍 Mentor Notes
+This integration is **not** a typical Telex integration (it is neither an **Interval**, **Output**, nor **Modifier** integration). Instead, it is an **embed** that logs feature requests to the selected Telex channel via a webhook URL.
+
+Mark (the Chief Mentor) approved this approach but required the creation of a frontend component. To test this integration, instead of adding it to a Telex channel manually, you can simply use the **test frontend** that I have already set up.
+
+### 🔹 How to Test
+1. Go to **[Feature Request Embed Test](https://feature-requests-embed.vercel.app/test.html)**.
+2. Submit a feature request through the form.
+3. Your submission will appear in the **Telex-Integration-Test-2** channel.
+   - [View the Channel](https://telex.im/dashboard/channels/019532cb-370e-77c7-9607-4036f19e5a6a)
+
+This setup ensures that feature requests are correctly logged in Telex without requiring a manual integration setup.
+
+---
 
 ## 📂 Project Structure
 ```
 /feature-request-embed
 │── README.md                     # Project documentation
-│── assets/                     # Project images
+│── assets/                       # Project images
 │── frontend/
 │   │── public/
 │   │   │── feature-request-widget.js   # The embeddable widget script
@@ -142,7 +156,7 @@ To embed the widget, paste the following **script** into your frontend code, rep
 ---
 
 ## 🔗 Resources
-- [Telex Webhooks](https://docs.telex.im/docs/intro)
+- [Telex Docs](https://docs.telex.im/docs/intro)
 - [FastAPI Docs](https://fastapi.tiangolo.com/)
 - [Render Deployment](https://render.com/docs/deploy-fastapi)
 
@@ -151,5 +165,3 @@ To embed the widget, paste the following **script** into your frontend code, rep
 
 ## 📩 Contact & Support
 For issues, open a GitHub **Issue** or contact `badobredanielle@example.com`.
-
-Happy coding! 🚀

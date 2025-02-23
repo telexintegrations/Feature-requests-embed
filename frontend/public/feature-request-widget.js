@@ -327,6 +327,9 @@ class FeatureRequestWidget {
         card.querySelector('.success-button-secondary').addEventListener('click', () => {
             card.remove();
         });
+        setTimeout(() => {
+            card.remove();
+        }, 5000);
     }
 
     getModalHTML() {

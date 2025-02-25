@@ -63,8 +63,8 @@ def get_integration_json(request: Request):
                 "Allows users to submit feature requests via an embeddable form.",
                 "Sends feature requests to a Telex channel for tracking and analysis."
                 "The form is embedded directly in the HTML of the website and does not require integration with Telex."
-                "To use the embeddable form, users must provide the URL of the Telex channel where the feature requests will be sent."
-                "please, refer to the github repository for more information."
+                "To use the embeddable form, users must provide the webkook url of the Telex channel where the feature requests will be sent."
+                "please, refer to the github repository README.md for more information."
             ],
             "settings": [
                 {
